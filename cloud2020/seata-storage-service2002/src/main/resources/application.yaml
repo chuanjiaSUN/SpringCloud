@@ -1,0 +1,54 @@
+server:
+  port: 2002
+
+spring:
+  application:
+    name: seata-storage-service
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/seata_storage?useSSL=false
+    username: root
+    password: zd19960405
+#    type: com.alibaba.druid.pool.DruidDataSource
+feign:
+  hystrix:
+    enabled: false
+
+logging:
+  level:
+    io:
+      seata: info
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+
+seata:
+  enabled: true
+  application-id: seata-storage-service
+  tx-service-group: my_test_tx_group
+  enable-auto-data-source-proxy: false
+  config:
+    type: nacos
+    nacos:
+      namespace:
+      serverAddr: localhost:8848
+      group: SEATA_GROUP
+      username: "nacos"
+      password: "nacos"
+    registry:
+      type: nacos
+      nacos:
+        application: seata-server
+        server-addr: localhost:8848
+        group: SEATA_GROUP
+        namespace:
+        username: "nacos"
+        password: "nacos"

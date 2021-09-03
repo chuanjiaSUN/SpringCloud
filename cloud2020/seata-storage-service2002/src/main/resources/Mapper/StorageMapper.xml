@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//com.scj.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scj.springcloud.mapper.StorageMapper">
+
+    <update id="decrease">
+        UPDATE t_storage
+        SET
+            used = used + #{count}, residue = residue - #{count}
+        WHERE
+            product_id = #{productId};
+    </update>
+
+</mapper>

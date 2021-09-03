@@ -1,0 +1,14 @@
+server:
+  port: 8006
+
+spring:
+  application:
+    name: cloud-provider-payment
+  cloud:
+    consul:
+      host: 120.26.170.124
+      port: 8500
+      discovery:
+        service-name: ${spring.application.name}
+        heartbeat:
+          enabled: true

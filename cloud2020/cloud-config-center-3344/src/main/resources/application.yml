@@ -1,0 +1,42 @@
+server:
+  port: 3344
+spring:
+  application:
+    name: cloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/sun-chuanjia/springcloud.git
+          ###搜索目录
+#          search-paths:
+#            - springcloud-config
+          force-pull: true
+          username: sun-chuanjia
+          password: zd19960405...
+          default-label: dev
+      # 读取分支
+      label: master
+
+  #rabbitMQ配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka
+  instance:
+    instance-id: configCenter3344
+    prefer-ip-address: true
+
+#rabbitMQ相关配置，暴露bus刷新配置的端点
+management:
+  endpoints: #暴露bus刷新配置的端点
+    web:
+      exposure:
+        include: 'bus-refresh'
+
